@@ -4,9 +4,9 @@ import 'package:foodey/model/food.dart';
 class CartItem {
   final String id;
   final Food f;
-  final int quantity;
+  int quantity;
 
-  const CartItem({
+   CartItem({
     @required this.id,
     @required this.f,
     @required this.quantity,

@@ -3,7 +3,6 @@ import 'package:foodey/features/cart/model/cart.dart';
 import 'package:provider/provider.dart';
 
 class CartRow extends StatelessWidget {
-
   final String id;
 
   const CartRow(this.id);
@@ -20,16 +19,36 @@ class CartRow extends StatelessWidget {
         height: 80,
         fit: BoxFit.cover,
       ),
-      title: Text(ct.f.title),
-      subtitle: Text("${ct.f.price}"),
+      title: Text(
+        ct.f.title,
+        style: TextStyle(
+          fontSize: 16,
+        ),
+      ),
+      subtitle: Text(
+        "${ct.f.price}",
+        style: TextStyle(
+          fontSize: 13,
+        ),
+      ),
       trailing: Container(
         width: 110,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            IconButton(icon: Icon(Icons.remove), onPressed: null),
-            Text("1"),
-            IconButton(icon: Icon(Icons.add), onPressed: null),
+            IconButton(
+              icon: Icon(Icons.remove),
+              onPressed: () {
+                cart.decrementQuantity(id);
+              },
+            ),
+            Text("${ct.quantity}"),
+            IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+                cart.incrementQuantity(id);
+              },
+            ),
           ],
         ),
       ),

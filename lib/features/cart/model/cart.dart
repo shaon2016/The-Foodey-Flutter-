@@ -13,7 +13,7 @@ class Cart with ChangeNotifier {
   }
 
   CartItem item(String id) {
-    final index = items.indexWhere((element) => element.id == id);
+    final index = _getIndex(id);
     final item = items[index];
     return item;
   }
@@ -32,4 +32,21 @@ class Cart with ChangeNotifier {
     return total;
   }
 
+  void incrementQuantity(String id) {
+    final index = _getIndex(id);
+    items[index].quantity++;
+    notifyListeners();
+  }
+
+  void decrementQuantity(String id) {
+    final index = _getIndex(id);
+    final item = items[index];
+
+    if (item.quantity > 1) {
+      items[index].quantity--;
+      notifyListeners();
+    }
+  }
+
+ int _getIndex(String id) { return items.indexWhere((element) => element.id == id);}
 }
