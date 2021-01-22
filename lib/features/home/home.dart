@@ -33,15 +33,11 @@ class HomeScreen extends StatelessWidget {
           )
         ],
       ),
-      drawer: Container(),
-      body: Provider(
-       create: (ctx) => Cart(),
-        child: ListView.builder(
-          itemBuilder: (ctx, index) {
-            return FoodRow(food: foods[index]);
-          },
-          itemCount: foods.length,
-        ),
+      body: ListView.builder(
+        itemBuilder: (ctx, index) {
+          return FoodRow(food: foods[index]);
+        },
+        itemCount: foods.length,
       ),
     );
   }

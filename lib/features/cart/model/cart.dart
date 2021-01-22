@@ -6,9 +6,21 @@ class Cart with ChangeNotifier {
   final List<CartItem> items = [];
 
   void addToCart(Food food) {
-    // TODO duplicate entry
-    final ct = CartItem(id: DateTime.now().toString(), f: food, quantity: 1);
-    items.add(ct);
+    var found = false;
+
+    for (int i = 0; i < items.length; i++) {
+      final ct = items[i];
+      if (food.id == ct.f.id) {
+        found = true;
+        items[i].quantity++;
+        break;
+      }
+    }
+
+    if (!found) {
+      final ct = CartItem(id: DateTime.now().toString(), f: food, quantity: 1);
+      items.add(ct);
+    }
     notifyListeners();
   }
 
@@ -35,7 +47,6 @@ class Cart with ChangeNotifier {
   void incrementQuantity(String id) {
     final index = _getIndex(id);
     items[index].quantity++;
-    notifyListeners();
   }
 
   void decrementQuantity(String id) {
@@ -44,9 +55,10 @@ class Cart with ChangeNotifier {
 
     if (item.quantity > 1) {
       items[index].quantity--;
-      notifyListeners();
     }
   }
 
- int _getIndex(String id) { return items.indexWhere((element) => element.id == id);}
+  int _getIndex(String id) {
+    return items.indexWhere((element) => element.id == id);
+  }
 }

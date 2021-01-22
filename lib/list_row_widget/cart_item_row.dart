@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:foodey/features/cart/model/cart.dart';
 import 'package:provider/provider.dart';
 
-class CartRow extends StatelessWidget {
+class CartRow extends StatefulWidget {
   final String id;
 
   const CartRow(this.id);
 
   @override
+  _CartRowState createState() => _CartRowState();
+}
+
+class _CartRowState extends State<CartRow> {
+  @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
-    final ct = cart.item(id);
+    final ct = cart.item(widget.id);
 
     return ListTile(
       leading: Image.network(
@@ -39,14 +44,18 @@ class CartRow extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.remove),
               onPressed: () {
-                cart.decrementQuantity(id);
+                setState(() {
+                  cart.decrementQuantity(widget.id);
+                });
               },
             ),
             Text("${ct.quantity}"),
             IconButton(
               icon: Icon(Icons.add),
               onPressed: () {
-                cart.incrementQuantity(id);
+                setState(() {
+                  cart.incrementQuantity(widget.id);
+                });
               },
             ),
           ],
