@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodey/features/cart/cart_screen.dart';
+import 'package:foodey/features/cart/checkout/checkout_screen.dart';
 import 'package:foodey/features/cart/model/cart.dart';
 import 'package:foodey/features/details/food_details.dart';
 import 'package:foodey/features/home/home.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
           CartScreen.routeName: (ctx) => CartScreen(),
           LoginScreen.routeName: (ctx) => LoginScreen(),
           FoodDetails.routeName: (ctx) => FoodDetails(),
+          CheckoutScreen.routeName: (ctx) => CheckoutScreen(),
         },
       ),
     );

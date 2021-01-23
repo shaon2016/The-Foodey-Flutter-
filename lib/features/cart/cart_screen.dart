@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodey/features/cart/checkout/checkout_screen.dart';
 import 'package:foodey/list_row_widget/cart_item_row.dart';
 import 'package:provider/provider.dart';
 
@@ -38,9 +39,11 @@ class CartScreen extends StatelessWidget {
             width: double.infinity,
             height: 42,
             child: RaisedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, CheckoutScreen.routeName);
+              },
               child: Text(
                 "Checkout",
-                style: TextStyle(color: Colors.white),
               ),
             ),
           )
