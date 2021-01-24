@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "624432405228",
+    "project_id": "foodey-46739",
+    "storage_bucket": "foodey-46739.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624432405228:android:9873ce90d1e4ab6eb2e3c9",
+        "android_client_info": {
+          "package_name": "com.lastblade.foodey"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624432405228-f4dv4li2fpfiujkd3hc2817siohp2p97.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYeGuf72RSEQtYrU1FYKERhV5JUQUSSxI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624432405228-f4dv4li2fpfiujkd3hc2817siohp2p97.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

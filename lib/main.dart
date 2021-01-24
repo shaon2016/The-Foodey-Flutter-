@@ -5,6 +5,7 @@ import 'package:foodey/features/cart/model/cart.dart';
 import 'package:foodey/features/details/food_details.dart';
 import 'package:foodey/features/home/home.dart';
 import 'package:foodey/features/login/login_screen.dart';
+import 'package:foodey/features/order/Order.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -18,6 +19,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (c) => Cart(),
+        ),
+        ChangeNotifierProvider(
+          create: (c) => Order(),
         ),
       ],
       child: MaterialApp(
