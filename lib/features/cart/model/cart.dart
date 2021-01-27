@@ -2,7 +2,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:foodey/model/food.dart';
 import 'cart_item.dart';
-import 'package:http/http.dart' as http;
 
 class Cart with ChangeNotifier {
   final List<CartItem> items = [];
@@ -62,6 +61,10 @@ class Cart with ChangeNotifier {
 
   int _getIndex(String id) {
     return items.indexWhere((element) => element.id == id);
+  }
+
+  void clear() {
+    items.clear();
   }
 
 
