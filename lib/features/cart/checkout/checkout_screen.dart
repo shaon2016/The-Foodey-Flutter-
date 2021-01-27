@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:foodey/features/cart/checkout/checkout_cart_item.dart';
 import 'package:foodey/features/cart/model/cart.dart';
 import 'package:foodey/features/home/home.dart';
-import 'package:foodey/features/order/Order.dart';
+import 'package:foodey/features/order/order.dart';
 import 'package:foodey/list_row_widget/cart_item_row.dart';
 import 'package:provider/provider.dart';
 
@@ -71,10 +71,11 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   _isloading = false;
                 });
                 cart.clear();
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (c) => HomeScreen()),
-                    ModalRoute.withName(HomeScreen.routeName));
+                // Navigator.pushAndRemoveUntil(
+                //     context,
+                //     MaterialPageRoute(builder: (c) => HomeScreen()),
+                //     ModalRoute.withName(HomeScreen.routeName));
+                Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
               },
               child: Text(
                 "Order Now",

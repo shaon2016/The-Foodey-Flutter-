@@ -4,6 +4,7 @@ import 'package:foodey/features/cart/model/cart.dart';
 import 'package:foodey/list_row_widget/food_row.dart';
 import 'package:foodey/model/food.dart';
 import 'package:foodey/widgets/badge.dart';
+import 'package:foodey/widgets/drawer.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -12,6 +13,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: AppDrawer(),
       appBar: AppBar(
         title: Text("Home"),
         actions: [
