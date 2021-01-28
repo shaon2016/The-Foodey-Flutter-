@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodey/features/cart/checkout/checkout_screen.dart';
+import 'package:foodey/features/order/Order.dart';
 import 'package:foodey/list_row_widget/cart_item_row.dart';
 import 'package:provider/provider.dart';
 
@@ -23,31 +24,34 @@ class CartScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: appbar,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            height: deviceSize.height - 42 - appbarSize - statusBarHeight,
-            child: ListView.builder(
-              itemBuilder: (ctx, index) {
-                return CartRow(cart.items[index].id);
-              },
-              itemCount: cart.items.length,
-            ),
-          ),
-          SizedBox(
-            width: double.infinity,
-            height: 42,
-            child: RaisedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, CheckoutScreen.routeName);
-              },
-              child: Text(
-                "Checkout",
+      body: ChangeNotifierProvider(
+       create: (ctx) => Order(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              height: deviceSize.height - 42 - appbarSize - statusBarHeight,
+              child: ListView.builder(
+                itemBuilder: (ctx, index) {
+                  return CartRow(cart.items[index].id);
+                },
+                itemCount: cart.items.length,
               ),
             ),
-          )
-        ],
+            SizedBox(
+              width: double.infinity,
+              height: 42,
+              child: RaisedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, CheckoutScreen.routeName);
+                },
+                child: Text(
+                  "Checkout",
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

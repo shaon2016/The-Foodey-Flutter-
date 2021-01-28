@@ -1,12 +1,12 @@
-class OrderPostRequest {
-  double total;
+class OrderRequest {
+  String total;
   String orderTime;
   List<Products> products;
 
-  OrderPostRequest({this.total, this.orderTime, this.products});
+  OrderRequest({this.total, this.orderTime, this.products});
 
-  OrderPostRequest.fromJson(Map<String, dynamic> json) {
-    total = json['total'];
+  OrderRequest.fromJson(Map<String, dynamic> json){
+    total = json['total'].toString();
     orderTime = json['order_time'];
     if (json['products'] != null) {
       products = new List<Products>();
@@ -14,6 +14,7 @@ class OrderPostRequest {
         products.add(new Products.fromJson(v));
       });
     }
+
   }
 
   Map<String, dynamic> toJson() {
@@ -30,16 +31,16 @@ class OrderPostRequest {
 class Products {
   String id;
   String title;
-  double price;
-  int qty;
+  String price;
+  String qty;
 
   Products({this.id, this.title, this.price, this.qty});
 
   Products.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
-    price = json['price'];
-    qty = json['qty'];
+    price = json['price'].toString();
+    qty = json['qty'].toString();
   }
 
   Map<String, dynamic> toJson() {
