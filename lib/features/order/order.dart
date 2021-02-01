@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -73,10 +74,11 @@ class Order with ChangeNotifier {
     Dio dio = new Dio();
     final response = await dio.post(url, data: jsonEncode(body));
 
-    if (response.statusCode == 200) {} else {}
+    if (response.statusCode == 200) {
+    } else {}
   }
 
-  void fetchOrders() async {
+  Future fetchOrders() async {
     final url = "https://foodey-46739-default-rtdb.firebaseio.com/orders.json";
     Dio dio = new Dio();
     final response = await dio.get(url);
@@ -90,23 +92,24 @@ class Order with ChangeNotifier {
         final List<OrderedProduct> p = [];
 
         order.products.forEach((element) {
-          p.add(OrderedProduct(id: element.id,
+          p.add(OrderedProduct(
+              id: element.id,
               title: element.title,
               price: element.price.toString(),
               qty: element.qty));
         });
 
-
-      final oi =   OrderItem(id: orderId,
+        final oi = OrderItem(
+            id: orderId,
             total: order.total,
             products: p,
             orderTime: order.orderTime);
 
         orders.add(oi);
       });
-
     } else {}
 
     notifyListeners();
+    return orders;
   }
 }

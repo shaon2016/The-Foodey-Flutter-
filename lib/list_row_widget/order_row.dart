@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodey/features/order/Order.dart';
+import 'package:foodey/features/order/order.dart';
 
 class OrderRow extends StatefulWidget {
   final OrderItem _item;
