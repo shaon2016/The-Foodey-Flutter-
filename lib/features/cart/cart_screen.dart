@@ -29,8 +29,7 @@ class CartScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              height: deviceSize.height - 42 - appbarSize - statusBarHeight,
+            Expanded(
               child: ListView.builder(
                 itemBuilder: (ctx, index) {
                   return CartRow(cart.items[index].id);
@@ -38,15 +37,17 @@ class CartScreen extends StatelessWidget {
                 itemCount: cart.items.length,
               ),
             ),
-            SizedBox(
-              width: double.infinity,
-              height: 42,
-              child: RaisedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, CheckoutScreen.routeName);
-                },
-                child: Text(
-                  "Checkout",
+            SafeArea(
+              child: SizedBox(
+                height: 48,
+                width: double.infinity,
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, CheckoutScreen.routeName);
+                  },
+                  child: Text(
+                    "Checkout",
+                  ),
                 ),
               ),
             )

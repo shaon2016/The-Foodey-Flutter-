@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:foodey/features/cart/model/cart_item.dart';

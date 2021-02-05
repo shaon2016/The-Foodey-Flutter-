@@ -42,14 +42,15 @@ class FoodDetails extends StatelessWidget {
     final double statusBarHeight = mediaQuery.padding.top;
 
     return Scaffold(
-      bottomNavigationBar:  SizedBox(
-        height: 42,
-        width: double.infinity,
-        child: RaisedButton(
-          child: Text("Add to cart"),
-          onPressed: () {
-            cart.addToCart(_food);
-          },
+      bottomNavigationBar:  SafeArea(
+        child: Container(
+          height: 48,
+          child: RaisedButton(
+            child: Text("Add to cart"),
+            onPressed: () {
+              cart.addToCart(_food);
+            },
+          ),
         ),
       ),
       appBar: appbar,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:foodey/features/cart/model/cart.dart';
-import 'package:foodey/features/cart/model/cart_item.dart';
 import 'package:foodey/features/details/food_details.dart';
 import 'package:foodey/model/food.dart';
 import 'package:provider/provider.dart';
