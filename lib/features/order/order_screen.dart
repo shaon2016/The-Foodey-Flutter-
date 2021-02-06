@@ -1,29 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodey/features/order/bloc/order_bloc.dart';
-import 'package:foodey/features/order/bloc/order_event.dart';
 import 'package:foodey/features/order/bloc/order_state.dart';
 import 'package:foodey/features/order/order.dart';
 import 'package:foodey/list_row_widget/order_row.dart';
 import 'package:foodey/widgets/drawer.dart';
-import 'package:provider/provider.dart';
 
-class OrderScreen extends StatefulWidget {
+class OrderScreen extends StatelessWidget {
   static final routeName = "/order";
-
-  @override
-  _OrderScreenState createState() => _OrderScreenState();
-}
-
-class _OrderScreenState extends State<OrderScreen> {
-
-  @override
-  void initState() {
-
-    super.initState();
-
-    context.read<OrderBloc>().add(FetchOrderEvent());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,3 +64,5 @@ class _OrderScreenState extends State<OrderScreen> {
     );
   }
 }
+
+

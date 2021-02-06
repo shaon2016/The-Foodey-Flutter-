@@ -1,10 +1,12 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:foodey/model/food.dart';
 import 'cart_item.dart';
 
-class Cart with ChangeNotifier {
-  final List<CartItem> items = [];
+@immutable
+class Cart {
+  final List<CartItem> items;
+
+  const Cart({this.items = const []});
 
   void addToCart(Food food) {
     var found = false;
@@ -22,7 +24,6 @@ class Cart with ChangeNotifier {
       final ct = CartItem(id: DateTime.now().toString(), f: food, quantity: 1);
       items.add(ct);
     }
-    notifyListeners();
   }
 
   CartItem item(String id) {
@@ -66,6 +67,4 @@ class Cart with ChangeNotifier {
   void clear() {
     items.clear();
   }
-
-
 }

@@ -1,8 +1,8 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:foodey/base/base_bloc_state.dart';
 import 'package:foodey/features/order/order.dart';
 
-abstract class OrderState extends BaseBlocState {
+abstract class OrderState extends Equatable {
   @override
   List<Object> get props => [];
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:foodey/features/cart/model/cart.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:foodey/features/cart/bloc/cart_bloc.dart';
+import 'package:foodey/features/cart/bloc/cart_bloc_event.dart';
 import 'package:foodey/features/details/food_details.dart';
 import 'package:foodey/model/food.dart';
-import 'package:provider/provider.dart';
 
 class FoodRow extends StatelessWidget {
   final Food food;
@@ -11,7 +12,6 @@ class FoodRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cart = Provider.of<Cart>(context, listen: false);
 
     return GestureDetector(
       onTap: () {
@@ -66,7 +66,9 @@ class FoodRow extends StatelessWidget {
                     IconButton(
                       icon: Icon(Icons.add_shopping_cart),
                       onPressed: () {
-                        cart.addToCart(food);
+                        context.read<CartBloc>().add(CartAddToCartEvent(food: food));
+                        // BlocProvider.of<CartBloc>(context).add(CartAddToCartEvent(food: food));
+                        // cart.addToCart(food);
                       },
                     ),
                   ],
