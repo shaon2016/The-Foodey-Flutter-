@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:foodey/features/cart/bloc/cart_bloc.dart';
+import 'package:foodey/features/cart/bloc/cart_bloc_event.dart';
+import 'package:foodey/features/cart/bloc/cart_bloc_state.dart';
 import 'package:foodey/features/cart/cart_screen.dart';
-import 'package:foodey/features/cart/model/cart.dart';
 import 'package:foodey/model/food.dart';
 import 'package:foodey/widgets/badge.dart';
 import 'package:provider/provider.dart';
@@ -11,44 +14,39 @@ class FoodDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Food _food = ModalRoute.of(context).settings.arguments as Food;
-    final cart = Provider.of<Cart>(context, listen: false);
-
-    final mediaQuery = MediaQuery.of(context);
-    final deviceSize = mediaQuery.size;
 
     final appbar = AppBar(
       title: Text(_food.title),
       actions: [
-        Consumer<Cart>(
-          builder: (ctx, cart, child) {
+        BlocBuilder<CartBloc, CartState>(builder: (ctx, state) {
+          if (state is CartLoadedState) {
             return Badge(
-              child: child,
-              value: "${cart.totalCount}",
+              child: IconButton(
+                  icon: Icon(
+                    Icons.shopping_cart,
+                    color: Colors.white,
+                  ),
+                  onPressed: () =>
+                      Navigator.pushNamed(context, CartScreen.routeName)),
+              value: "${state.cart.totalCount}",
               color: Colors.redAccent,
             );
-          },
-          child: IconButton(
-              icon: Icon(
-                Icons.shopping_cart,
-                color: Colors.white,
-              ),
-              onPressed: () =>
-                  Navigator.pushNamed(context, CartScreen.routeName)),
-        )
+          }
+          return Container();
+        })
       ],
     );
 
-    final double appbarSize = appbar.preferredSize.height;
-    final double statusBarHeight = mediaQuery.padding.top;
-
     return Scaffold(
       bottomNavigationBar:  SafeArea(
+        bottom: true,
         child: Container(
           height: 48,
           child: RaisedButton(
             child: Text("Add to cart"),
             onPressed: () {
-              cart.addToCart(_food);
+              // cart.addToCart(_food);
+              context.read<CartBloc>().add(CartAddToCartEvent(food: _food));
             },
           ),
         ),

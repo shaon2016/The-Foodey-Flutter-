@@ -24,23 +24,21 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     }
 
     if (event is CartIncrementEvent) {
-    yield*  _mapToCartItemIncrement(event, state);
+      yield* _mapToCartItemIncrement(event, state);
     }
     if (event is CartDecrementEvent) {
-      yield*   _mapToCartItemDecrement(event, state);
+      yield* _mapToCartItemDecrement(event, state);
     }
 
     if (event is CartAddToCartEvent) {
-      yield*     _mapToCartAddEvent(event, state);
+      yield* _mapToCartAddEvent(event, state);
     }
 
     if (state is CartLoadedState) {}
-
   }
 
   Stream<CartState> _mapToCartAddEvent(
       CartAddToCartEvent event, CartState state) async* {
-
     if (state is CartLoadedState) {
       try {
         yield CartLoadedState(
