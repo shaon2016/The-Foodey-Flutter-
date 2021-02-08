@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodey/features/cart/bloc/cart_bloc.dart';
+import 'package:foodey/features/cart/bloc/cart_bloc_event.dart';
 import 'package:foodey/features/cart/bloc/cart_bloc_state.dart';
 import 'package:foodey/features/cart/checkout/checkout_cart_item.dart';
+import 'package:foodey/features/home/home.dart';
 
 
 class CheckoutScreen extends StatefulWidget {
@@ -22,7 +24,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     return Scaffold(
       appBar: appbar,
       bottomNavigationBar:
-          BlocBuilder<CartBloc, CartState>(builder: (ctx, state) {
+      BlocBuilder<CartBloc, CartState>(builder: (ctx, state) {
+
         if (state is CartLoadedState) {
           return SafeArea(
             child: Container(
@@ -56,22 +59,17 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     ],
                   ),
                   RaisedButton(
-                    onPressed: () async {
-                      // setState(() {
-                      //   _isloading = true;
-                      // });
+                    onPressed: () {
                       // await Provider.of<Order>(context, listen: false)
                       //     .postOrder(cart.items, cart.totalPrice);
-                      // setState(() {
-                      //   _isloading = false;
-                      // });
+                      context.read<CartBloc>().add(CartPostOrderEvent());
                       // cart.clear();
-                      // // Navigator.pushAndRemoveUntil(
-                      // //     context,
-                      // //     MaterialPageRoute(builder: (c) => HomeScreen()),
-                      // //     ModalRoute.withName(HomeScreen.routeName));
-                      // Navigator.pushNamedAndRemoveUntil(
-                      //     context, HomeScreen.routeName, (route) => false);
+                      // Navigator.pushAndRemoveUntil(
+                      //     context,
+                      //     MaterialPageRoute(builder: (c) => HomeScreen()),
+                      //     ModalRoute.withName(HomeScreen.routeName));
+
+
                     },
                     child: Text(
                       "Order Now",
@@ -89,7 +87,12 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       }),
       body: BlocBuilder<CartBloc, CartState>(
         builder: (ctx, state) {
-          if (state is CartInitialState || state is PostOrderState) {
+          if (state is CartPostOrderState) {
+            // Navigator.pushNamedAndRemoveUntil(
+            //     context, HomeScreen.routeName, (route) => false);
+            return Container();
+          }
+          if (state is CartInitialState) {
             return Center(
               child: CircularProgressIndicator(),
             );
@@ -112,7 +115,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         children: [
                           Icon(
                             Icons.location_on_rounded,
-                            color: Theme.of(context).accentColor,
+                            color: Theme
+                                .of(context)
+                                .accentColor,
                           ),
                           SizedBox(
                             width: 8,
@@ -123,7 +128,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       Text(
                         "Edit".toUpperCase(),
                         style: TextStyle(
-                          color: Theme.of(context).accentColor,
+                          color: Theme
+                              .of(context)
+                              .accentColor,
                           fontSize: 15,
                           fontWeight: FontWeight.w400,
                         ),
@@ -148,7 +155,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         children: [
                           Icon(
                             Icons.payment_rounded,
-                            color: Theme.of(context).accentColor,
+                            color: Theme
+                                .of(context)
+                                .accentColor,
                           ),
                           SizedBox(
                             width: 8,
@@ -159,7 +168,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       Text(
                         "Edit".toUpperCase(),
                         style: TextStyle(
-                          color: Theme.of(context).accentColor,
+                          color: Theme
+                              .of(context)
+                              .accentColor,
                           fontSize: 15,
                           fontWeight: FontWeight.w400,
                         ),
@@ -176,7 +187,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         children: [
                           Icon(
                             Icons.phone,
-                            color: Theme.of(context).accentColor,
+                            color: Theme
+                                .of(context)
+                                .accentColor,
                           ),
                           SizedBox(
                             width: 8,
@@ -196,7 +209,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         children: [
                           Icon(
                             Icons.mail,
-                            color: Theme.of(context).accentColor,
+                            color: Theme
+                                .of(context)
+                                .accentColor,
                           ),
                           SizedBox(
                             width: 8,

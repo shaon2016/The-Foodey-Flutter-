@@ -48,33 +48,7 @@ class OrderedProduct {
 class Order with ChangeNotifier {
   final List<OrderItem> orders = [];
 
-  Future<void> postOrder(List<CartItem> items, double totalPrice) async {
-    final url = "https://foodey-46739-default-rtdb.firebaseio.com/orders.json";
 
-    final timestamp = DateTime.now();
-
-    List<Products> products = [];
-
-    items.forEach((element) {
-      products.add(Products(
-        id: element.id,
-        title: element.f.title,
-        price: element.f.price.toString(),
-        qty: element.quantity.toString(),
-      ));
-    });
-
-    final body = OrderRequest(
-        total: totalPrice.toString(),
-        orderTime: timestamp.toIso8601String(),
-        products: products);
-
-    Dio dio = new Dio();
-    final response = await dio.post(url, data: jsonEncode(body));
-
-    if (response.statusCode == 200) {
-    } else {}
-  }
 
   Future fetchOrders() async {
     final url = "https://foodey-46739-default-rtdb.firebaseio.com/orders.json";

@@ -36,3 +36,5 @@ class CartAddToCartEvent extends CartEvent {
 
   CartAddToCartEvent({@required this.food});
 }
+class CartPostOrderEvent extends CartEvent {
+}
