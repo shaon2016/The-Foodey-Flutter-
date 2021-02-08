@@ -11,6 +11,7 @@ abstract class CartState extends Equatable {
 }
 
 class CartInitialState extends CartState {}
+class PostOrderState extends CartState {}
 
 class CartLoadedState extends CartState {
   const CartLoadedState({this.cart = const Cart()});

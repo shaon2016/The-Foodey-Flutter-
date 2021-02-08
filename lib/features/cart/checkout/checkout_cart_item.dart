@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:foodey/features/cart/model/cart.dart';
+import 'package:foodey/features/cart/model/cart_item.dart';
 import 'package:provider/provider.dart';
 
-class CheckoutCartRow extends StatefulWidget {
-  final String id;
+class CheckoutCartRow extends StatelessWidget {
+  final CartItem ct;
 
-  const CheckoutCartRow(this.id);
+  const CheckoutCartRow(this.ct);
 
-  @override
-  _CartRowState createState() => _CartRowState();
-}
-
-class _CartRowState extends State<CheckoutCartRow> {
   @override
   Widget build(BuildContext context) {
-    final cart = Provider.of<Cart>(context);
-    final ct = cart.item(widget.id);
 
     return ListTile(
       leading: Image.network(
@@ -40,3 +34,5 @@ class _CartRowState extends State<CheckoutCartRow> {
     );
   }
 }
+
+

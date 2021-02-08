@@ -33,8 +33,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     if (event is CartAddToCartEvent) {
       yield* _mapToCartAddEvent(event, state);
     }
-
-    if (state is CartLoadedState) {}
   }
 
   Stream<CartState> _mapToCartAddEvent(
@@ -52,12 +50,14 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
   Stream<CartState> _mapToCartItemIncrement(
       CartIncrementEvent event, CartState state) async* {
+
     if (state is CartLoadedState) {
       try {
         yield CartLoadedState(
             cart: Cart(items: List.from(state.cart.items))
-              ..incrementQuantity(event.food.id));
-      } catch (_) {
+              ..incrementQuantity(event.id));
+      } catch (e) {
+        print(e.toString());
         yield CartLoadFailureState();
       }
     }
@@ -69,7 +69,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       try {
         yield CartLoadedState(
             cart: Cart(items: List.from(state.cart.items))
-              ..decrementQuantity(event.food.id));
+              ..decrementQuantity(event.id));
       } catch (_) {
         yield CartLoadFailureState();
       }

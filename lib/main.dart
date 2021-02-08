@@ -5,7 +5,6 @@ import 'package:foodey/features/cart/bloc/cart_bloc_event.dart';
 import 'package:foodey/features/cart/cart_screen.dart';
 import 'package:foodey/features/cart/checkout/checkout_screen.dart';
 import 'package:foodey/features/cart/data/cart_repo.dart';
-import 'package:foodey/features/cart/model/cart.dart';
 import 'package:foodey/features/details/food_details.dart';
 import 'package:foodey/features/home/bloc/product_bloc.dart';
 import 'package:foodey/features/home/bloc/product_event.dart';
@@ -15,9 +14,7 @@ import 'package:foodey/features/login/login_screen.dart';
 import 'package:foodey/features/order/bloc/order_bloc.dart';
 import 'package:foodey/features/order/bloc/order_event.dart';
 import 'package:foodey/features/order/data/order_repo.dart';
-import 'package:foodey/features/order/order.dart';
 import 'package:foodey/features/order/order_screen.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());

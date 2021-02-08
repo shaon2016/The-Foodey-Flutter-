@@ -21,15 +21,14 @@ class CartFetchEvent extends CartEvent {
 }
 
 class CartIncrementEvent extends CartEvent {
-  final Food food;
-
-  CartIncrementEvent({@required this.food});
+  final String id;
+  CartIncrementEvent({@required this.id});
 }
 
 class CartDecrementEvent extends CartEvent {
-  final Food food;
+  final String id;
 
-  CartDecrementEvent({@required this.food});
+  CartDecrementEvent({@required this.id});
 }
 
 class CartAddToCartEvent extends CartEvent {
