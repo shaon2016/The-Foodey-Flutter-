@@ -72,7 +72,7 @@ class Cart {
     items.clear();
   }
 
-  Future<void> postOrder(List<CartItem> items, double totalPrice) async {
+  Future<List<CartItem>> postOrder(List<CartItem> items, double totalPrice) async {
     final url = "https://foodey-46739-default-rtdb.firebaseio.com/orders.json";
 
     final timestamp = DateTime.now();
@@ -98,6 +98,10 @@ class Cart {
 
     if (response.statusCode == 200) {
       items.clear();
-    } else {}
+
+      return items;
+    } else {
+      return items;
+    }
   }
 }

@@ -17,7 +17,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
       try {
         // final List<CartItem> items = await repoImpl.fetchCartItems();
-        yield const CartLoadedState();
+       yield const CartLoadedState();
       } catch (_) {
         yield CartLoadFailureState();
       }
@@ -82,10 +82,11 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   Stream<CartState> _mapToCartPostOrderEvent(
       CartPostOrderEvent event, CartState state) async* {
     if (state is CartLoadedState) {
+      yield CartInitialState();
       try {
-        yield CartInitialState();
         await state.cart.postOrder(state.cart.items, state.cart.totalPrice);
         yield CartPostOrderState();
+        yield CartLoadedState();
       } catch (e) {
         print(e.toString());
         yield CartLoadFailureState();

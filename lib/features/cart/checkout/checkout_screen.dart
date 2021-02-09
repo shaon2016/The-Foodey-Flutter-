@@ -83,15 +83,17 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             ),
           );
         }
-        return Container();
+        return Center(child: CircularProgressIndicator(),);
       }),
-      body: BlocBuilder<CartBloc, CartState>(
-        builder: (ctx, state) {
+      body: BlocConsumer<CartBloc, CartState>(
+        listener: (ctx,state) {
           if (state is CartPostOrderState) {
-            // Navigator.pushNamedAndRemoveUntil(
-            //     context, HomeScreen.routeName, (route) => false);
-            return Container();
+            Navigator.pushNamedAndRemoveUntil(
+                context, HomeScreen.routeName, (route) => false);
           }
+        },
+        builder: (ctx, state) {
+
           if (state is CartInitialState) {
             return Center(
               child: CircularProgressIndicator(),

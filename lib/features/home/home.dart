@@ -35,7 +35,17 @@ class HomeScreen extends StatelessWidget {
                 color: Colors.redAccent,
               );
             }
-            return Container();
+            return  Badge(
+              child: IconButton(
+                  icon: Icon(
+                    Icons.shopping_cart,
+                    color: Colors.white,
+                  ),
+                  onPressed: () =>
+                      Navigator.pushNamed(context, CartScreen.routeName)),
+              value: "0",
+              color: Colors.redAccent,
+            );
           })
           // Consumer<Cart>(
           //   builder: (ctx, cart, child) {

@@ -46,11 +46,14 @@ class CartScreen extends StatelessWidget {
                 )
               ],
             );
-          } else {
+          } else if (state is CartInitialState) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else
             return Center(
               child: Text("Something is wrong"),
             );
-          }
         },
       ),
     );
