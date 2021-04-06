@@ -1,23 +1,22 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodey/features/cart/cart_screen.dart';
 import 'package:foodey/features/cart/model/cart.dart';
-import 'package:foodey/list_row_widget/category_item_widget.dart';
-import 'package:foodey/model/category.dart';
+import 'package:foodey/list_row_widget/food_row.dart';
+import 'package:foodey/model/food.dart';
 import 'package:foodey/widgets/badge.dart';
-import 'package:foodey/widgets/drawer.dart';
 import 'package:provider/provider.dart';
 
-class CategoryScreen extends StatelessWidget {
-  static var routeName = "/category";
+class FoodScreen extends StatelessWidget {
+  static var routeName = "/food";
 
   @override
   Widget build(BuildContext context) {
+    final List<Food> foods =
+        ModalRoute.of(context).settings.arguments as List<Food>;
+
     return Scaffold(
-      drawer: AppDrawer(),
       appBar: AppBar(
-        title: Text("Categories"),
+        title: Text("Categorized Foods"),
         actions: [
           Consumer<Cart>(
             builder: (ctx, cart, child) {
@@ -39,11 +38,10 @@ class CategoryScreen extends StatelessWidget {
       ),
       body: ListView.builder(
         itemBuilder: (ctx, index) {
-          return CategoryRow(category: categories[index]);
+          return FoodRow(food: foods[index]);
         },
-        itemCount: categories.length,
+        itemCount: foods.length,
       ),
     );
   }
-
 }
