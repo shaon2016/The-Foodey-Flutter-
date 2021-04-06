@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodey/features/category/category_screen.dart';
 import 'package:foodey/features/home/home.dart';
 import 'package:foodey/features/order/order_screen.dart';
 
@@ -22,7 +23,13 @@ class AppDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('Orders'),
+            title: Text('Categories'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, CategoryScreen.routeName);
+            },
+          ),
+          ListTile(
+            title: Text('My Orders'),
             onTap: () {
               Navigator.pushReplacementNamed(context, OrderScreen.routeName);
             },

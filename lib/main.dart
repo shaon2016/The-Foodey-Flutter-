@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodey/features/cart/cart_screen.dart';
 import 'package:foodey/features/cart/checkout/checkout_screen.dart';
 import 'package:foodey/features/cart/model/cart.dart';
+import 'package:foodey/features/category/category_screen.dart';
 import 'package:foodey/features/details/food_details.dart';
 import 'package:foodey/features/home/home.dart';
 import 'package:foodey/features/login/login_screen.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
           FoodDetails.routeName: (ctx) => FoodDetails(),
           CheckoutScreen.routeName: (ctx) => CheckoutScreen(),
           OrderScreen.routeName: (ctx) => OrderScreen(),
+          CategoryScreen.routeName: (ctx) => CategoryScreen(),
         },
       ),
     );
