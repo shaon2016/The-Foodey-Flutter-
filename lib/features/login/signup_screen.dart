@@ -1,22 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:foodey/features/home/home.dart';
-import 'package:foodey/features/login/signup_screen.dart';
+import 'package:foodey/features/login/login_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  static var routeName = "/login";
-
-  @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final _formKey = GlobalKey<FormState>();
-
-  var email = "";
-  var password = "";
+class SignUpScreen extends StatelessWidget {
+  static var routeName = "/signup";
 
   @override
   Widget build(BuildContext context) {
+    final _formKey = GlobalKey<FormState>();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Form(
@@ -91,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                             color: Theme.of(context).accentColor,
                             child: Text(
-                              "Login",
+                              "Sign Up",
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
@@ -108,18 +99,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Don't have an account?",
+                    "Already have an account?",
                     style: TextStyle(
                       color: Theme.of(context).accentColor,
                     ),
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, SignUpScreen.routeName, (route) => false);
+                      Navigator.pushNamedAndRemoveUntil(context, LoginScreen.routeName, (route) => false);
                     },
                     child: Text(
-                      " Register here",
+                      " Click here",
                       style: TextStyle(
                         color: Colors.redAccent,
                       ),

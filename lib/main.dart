@@ -7,6 +7,7 @@ import 'package:foodey/features/category/foods_screen.dart';
 import 'package:foodey/features/details/food_details.dart';
 import 'package:foodey/features/home/home.dart';
 import 'package:foodey/features/login/login_screen.dart';
+import 'package:foodey/features/login/signup_screen.dart';
 import 'package:foodey/features/order/order.dart';
 import 'package:foodey/features/order/order_screen.dart';
 import 'package:provider/provider.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
           OrderScreen.routeName: (ctx) => OrderScreen(),
           CategoryScreen.routeName: (ctx) => CategoryScreen(),
           FoodScreen.routeName: (ctx) => FoodScreen(),
+          SignUpScreen.routeName: (ctx) => SignUpScreen(),
         },
       ),
     );
