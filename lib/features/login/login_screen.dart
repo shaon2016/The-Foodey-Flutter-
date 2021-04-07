@@ -12,8 +12,17 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  var email = "";
-  var password = "";
+  final myEmailController = TextEditingController();
+  final myPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the
+    // widget tree.
+    myEmailController.dispose();
+    myPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +58,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               hintText: 'Email',
                               labelText: 'Email *',
                             ),
-
                             validator: (String value) {
                               if (value == null || value.isEmpty)
                                 return "Enter email";
@@ -57,6 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ? 'Enter a proper email address'
                                   : null;
                             },
+                            controller: myEmailController,
                           ),
                           SizedBox(
                             height: 10,
@@ -66,11 +75,12 @@ class _LoginScreenState extends State<LoginScreen> {
                               hintText: 'Password',
                               labelText: 'Password *',
                             ),
-
                             validator: (String value) {
-                              if (value == null) return "Enter password";
+                              if (value == null || value.isEmpty)
+                                return "Enter password";
                               return null;
                             },
+                            controller: myPasswordController,
                           ),
                         ],
                       ),
@@ -84,9 +94,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: double.infinity,
                           child: RaisedButton(
                             onPressed: () {
+                              FocusScope.of(context).unfocus();
                               if (_formKey.currentState.validate()) {
-                                Navigator.pushNamedAndRemoveUntil(context,
-                                    HomeScreen.routeName, (route) => false);
+                                if (myEmailController.text.trim() == "a@g.com" && myPasswordController.text.trim() == "123")
+                                  Navigator.pushNamedAndRemoveUntil(context,
+                                      HomeScreen.routeName, (route) => false);
+                                else
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                          content: Text(
+                                              "Email or password is not correct")));
                               }
                             },
                             color: Theme.of(context).accentColor,
